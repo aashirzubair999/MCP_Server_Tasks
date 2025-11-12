@@ -30,17 +30,17 @@ class ChatRequest(BaseModel):
 # ----------------------------
 # MCP Git server wrapper
 # ----------------------------
-# After loading env
-
 repo_path = os.path.abspath(REPO_PATH)
 
-
-
+# Use uvx to start MCP Git server
 mcp_server = MCPServerStdio(
     params={
-        "command": ["uvx", "mcp-server-git", "--repo", repo_path],
-        "cwd": os.getcwd(),
+        "command": "uvx",
+        "args": ["mcp-server-git"],
+        "cwd": repo_path,
         "env": os.environ.copy(),
+        "stdout": True,  # enable logging
+        "stderr": True,
     },
     name="git-mcp"
 )
