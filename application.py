@@ -74,6 +74,13 @@ async def shutdown_event():
 # ----------------------------
 # Chat endpoint
 # ----------------------------
+
+@app.get("/")
+async def home():
+    return "Home route"
+
+
+
 @app.post("/chat")
 async def chat(request: ChatRequest):
     user_query = request.query.strip()
